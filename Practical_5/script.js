@@ -3,7 +3,7 @@ function check(number) {
   for (var count = 2; count <= 4; count++) {
     var sum = 0;
     var s_number = [];
-    for (var count2 = 0; count2 < count; count2++) {
+    for (var count2 = count - 1; count2 >= 0; count2--) {
       sum += Math.pow(number[count2], count);
       s_number[s_number.length] = number[count2];
     }
@@ -14,6 +14,7 @@ function check(number) {
 }
 
 function add_result(sum, s_number, length) {
+  if (length == 3) {
   var number = "";
   for (let count = length; count >= 0; count--) {
     for (let count2 = length; count2 > 0; count2--) {
@@ -25,7 +26,7 @@ function add_result(sum, s_number, length) {
         }
       }
     }
-  }
+  }}
 return "";
 }
 
@@ -34,7 +35,8 @@ return "";
       alert(number + " " + sum);}*/
 
 var number = [ ];
-var result = "";
+var result = [];
+var s_check;
   for (var count0 = 0; count0 <= 9; count0++) {
       number[0] = count0;
     for (var count1 = count0; count1 <= 9; count1++) {
@@ -43,9 +45,11 @@ var result = "";
           number[2] = count2;
           for (var count3 = count2; count3 <=9; count3++) {
             number[3] = count3;
-            result += check(number);
+            s_check = check(number);
+            if (s_check != "") result[result.length] = s_check;
             }
           }
         }
       }
+  result.sort();
 alert(result);
