@@ -1,27 +1,25 @@
 function check(number) {
-  var new_number = "";
-  for (var count = 2; count <= 4; count++) {
-    var sum = 0;
-    var s_number = [];
-    for (var count2 = count - 1; count2 >= 0; count2--) {
+  let new_number = "";
+  for (let count = 2; count <= 4; count++) {
+    let sum=0;
+    let s_number = [];
+    for (let count2 = count - 1; count2 >= 0; count2--) {
       sum += Math.pow(number[count2], count);
       s_number[s_number.length] = number[count2];
     }
-    var length = s_number.join("").length - 1;
-    new_number += add_result(sum, s_number, length);
+    new_number += add_result(sum, s_number, s_number.length - 1);
   }
   return new_number;
 }
 
 function add_result(sum, s_number, length) {
-  var number = "";
   if (!result.includes(sum)) {
   for (let count = length; count >= 0; count--) {
     for (let count2 = length; count2 > 0; count2--) {
       if (s_number[count2] != s_number[count2 - 1]) {
         [s_number[count2], s_number[count2 - 1]] = [s_number[count2 - 1], s_number[count2]];
         if (s_number.join("") == String(sum)) {
-          number = s_number.join("") + " ";
+          let number = s_number.join("");
           return number;
         }
       }
@@ -30,10 +28,6 @@ function add_result(sum, s_number, length) {
 }
 return "";
 }
-
-
-/*  if ((sum == 153) || (sum == 370) || (sum == 371) || (sum == 407) || (sum == 1634) || (sum == 8208) || (sum == 9474)){
-      alert(number + " " + sum);}*/
 
 var number = [ ];
 var result = [];
