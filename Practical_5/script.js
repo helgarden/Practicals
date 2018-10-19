@@ -1,41 +1,49 @@
-function check(number, result) {
-  for (let count = 2; count <= 4; count++) {
-    let sum = 0;
-    let s_number = [];
-    for (let count2 = 0; count2 < count; count2++) {
+function check(number) {
+  var new_number = "";
+  for (var count = 2; count <= 4; count++) {
+    var sum = 0;
+    var s_number = [];
+    for (var count2 = 0; count2 < count; count2++) {
       sum += Math.pow(number[count2], count);
       s_number[s_number.length] = number[count2];
     }
-    result = add_result(sum, s_number, result);
+    var length = s_number.join("").length - 1;
+    new_number += add_result(sum, s_number, length);
   }
-return result;
+  return new_number;
 }
 
-function add_result(sum, s_number, result) {
-  for (let count = 0; count < s_number.length; count++) {
-    for (let count2 = 0; count2 < s_number.length; count2++) {
-      if (count != count2) {
-        [s_number[count], s_number[count2]] = [s_number[count2], s_number[count]];
+function add_result(sum, s_number, length) {
+  var number = "";
+  for (let count = length; count >= 0; count--) {
+    for (let count2 = length; count2 > 0; count2--) {
+      if (s_number[count2] != s_number[count2 - 1]) {
+        [s_number[count2], s_number[count2 - 1]] = [s_number[count2 - 1], s_number[count2]];
         if (s_number.join("") == String(sum)) {
-          result += " " + s_number.join("");
+          number = s_number.join("") + " ";
+          return number;
         }
       }
     }
   }
-  return result;
+return "";
 }
 
-let number = [0, 0, 0, 0];
-let result = "";
-  for (let count0 = 0; count0 <= 9; count0++) {
+
+/*  if ((sum == 153) || (sum == 370) || (sum == 371) || (sum == 407) || (sum == 1634) || (sum == 8208) || (sum == 9474)){
+      alert(number + " " + sum);}*/
+
+var number = [ ];
+var result = "";
+  for (var count0 = 0; count0 <= 9; count0++) {
       number[0] = count0;
-    for (let count1 = Number(count0); count1 <= 9; count1++) {
+    for (var count1 = count0; count1 <= 9; count1++) {
         number[1] = count1;
-        for (let count2 = Number(count1); count2 <= 9; count2++) {
+        for (var count2 = count1; count2 <= 9; count2++) {
           number[2] = count2;
-          for (let count3 = Number(count2); count3 <=9; count3++) {
+          for (var count3 = count2; count3 <=9; count3++) {
             number[3] = count3;
-            result = check(number, result);
+            result += check(number);
             }
           }
         }
