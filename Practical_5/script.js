@@ -14,8 +14,8 @@ function check(number) {
 }
 
 function add_result(sum, s_number, length) {
-  if (length == 3) {
   var number = "";
+  if (!result.includes(sum)) {
   for (let count = length; count >= 0; count--) {
     for (let count2 = length; count2 > 0; count2--) {
       if (s_number[count2] != s_number[count2 - 1]) {
@@ -26,7 +26,8 @@ function add_result(sum, s_number, length) {
         }
       }
     }
-  }}
+  }
+}
 return "";
 }
 
@@ -46,10 +47,12 @@ var s_check;
           for (var count3 = count2; count3 <=9; count3++) {
             number[3] = count3;
             s_check = check(number);
-            if (s_check != "") result[result.length] = s_check;
+            if (s_check != "") result[result.length] = Number(s_check);
             }
           }
         }
       }
-  result.sort();
+       {
+}
+result.sort(function (a, b){return a-b;});
 alert(result);
