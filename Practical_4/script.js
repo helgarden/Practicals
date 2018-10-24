@@ -10,7 +10,8 @@ do  {
   sum += 1 / (n * n);
   y = 1 / (sum + Math.sin(X));
   n++;
+  console.log(y);
 }
 while (y - y_prev > ACCURACY);
 
-alert ("y = " + y);
+console.log("y = " + y);
