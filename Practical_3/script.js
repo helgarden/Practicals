@@ -11,4 +11,4 @@ for (let k = a; k <= n; k++) {
   a = k * a + 1 / k;
 }
 
-alert(a);
+alert("n = " + n + ", a = " + a);
