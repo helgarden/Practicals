@@ -30,7 +30,8 @@ let bc = Math.acos((b*b+c*c-a*a)/(2*b*c));
 let ac = Math.acos((a*a+c*c-b*b)/(2*a*c));
 let ab = Math.PI - bc - ac;
 
-let result = "Угол между b и c " + check_angle_type(bc);
+let result = "a = " + a + ", b = " + b + ", c = " + c;
+result += "\nУгол между b и c " + check_angle_type(bc);
 result += "\nУгол между а и с " + check_angle_type(ac);
 result += "\nУгол между a и b " + check_angle_type(ab);
 alert(result);
