@@ -17,27 +17,27 @@ function createMatrix(size, minValue, maxValue) {
 
 function findSaddlePoint(matrix) {
   let pointCounter = 0;
-  for (let count = 0; count < matrix.length; count++) {
-    let rowMin = matrix[count][0];
+  for (let i = 0; i < matrix.length; i++) {
+    let rowMin = matrix[i][0];
     let colIndex = 0;
     let saddlePoint = true;
-    for (let count2 = 1; count2 < matrix.length; count2++) {
-      if (matrix[count][count2] < rowMin) {
-        rowMin = matrix[count][count2];
-        colIndex = count2;
+    for (let j = 1; j < matrix.length; j++) {
+      if (matrix[i][j] < rowMin) {
+        rowMin = matrix[i][j];
+        colIndex = j;
       }
     }
-    for (let count2 = 0; count2 < matrix.length; count2++) {
-      if (matrix[count2][colIndex] > rowMin) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (matrix[j][colIndex] > rowMin) {
         saddlePoint = false;
         break;
       }
     }
     if (saddlePoint) {
       pointCounter++;
-      console.log('Point: ' + matrix[count][colIndex]);
+      console.log('Point: ' + matrix[i][colIndex]);
       console.log('Column index: ' + colIndex);
-      console.log('Row index: ' + count);
+      console.log('Row index: ' + i);
     }
   }
   if (!pointCounter) {
