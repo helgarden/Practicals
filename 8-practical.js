@@ -6,10 +6,10 @@ function randomInt(minValue, maxValue) {
 
 function createMatrix(size, minValue, maxValue) {
   const array = [];
-  for (let count = 0; count < size; count++) {
-    array[count] = [];
-    for (let count2 = 0; count2 < size; count2++) {
-      array[count][count2] = randomInt(minValue, maxValue);
+  for (let i = 0; i < size; i++) {
+    array[i] = [];
+    for (let j = 0; j < size; j++) {
+      array[i][j] = randomInt(minValue, maxValue);
     }
   }
   return array;
