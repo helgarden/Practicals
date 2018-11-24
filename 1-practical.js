@@ -2,8 +2,7 @@
 
 function checkInput(text) {
   while (true) {
-    console.log(text);
-    const input = readline(); //??
+    const input = prompt(text);
     if (isFinite(input) && (input > 0)) return input;
   }
 }
