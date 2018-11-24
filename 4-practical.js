@@ -1,6 +1,6 @@
 'use strict';
 
-const ACCURACY = 0.00001;
+const ACCURACY = 1e-5;
 const X = 0.56;
 let yPrev;
 let y = 0;
