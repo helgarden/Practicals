@@ -6,11 +6,14 @@
 const randomInt = (min, max) =>
   Math.floor(min + Math.random() * (max - min + 1));
 
-const n = randomInt(1, 100);
-let a = 1;
-for (let k = a; k <= n; k++) {
-  a = k * a + 1 / k;
-}
+const getMember = n => {
+  let a = 1;
+  for (let k = a; k <= n; k++) {
+    a = k * a + 1 / k;
+  }
+  return a;
+};
 
+const n = randomInt(1, 100);
 console.log('n = ' + n);
-console.log('a = ' + a);
+console.log('a = ' + getMember(n));
