@@ -1,53 +1,52 @@
+/* Find saddle points in square matrix */
+
 'use strict';
 
-function randomInt(minValue, maxValue) {
-  return Math.floor(minValue + Math.random() * (maxValue - minValue + 1));
-}
+const randomInt = (min = 1, max = 10) =>
+  Math.floor(min + Math.random() * (max - min + 1));
 
-function createMatrix(size, minValue, maxValue) {
-  const array = [];
-  for (let i = 0; i < size; i++) {
-    array[i] = [];
-    for (let j = 0; j < size; j++) {
-      array[i][j] = randomInt(minValue, maxValue);
-    }
+const createMatrix = () => {
+  const matrix = [];
+  matrix.length = randomInt();
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i] = [];
+    for (let j = 0; j < matrix.length; j++)
+      matrix[i][j] = randomInt();
   }
-  return array;
-}
+  return matrix;
+};
 
 function findSaddlePoint(matrix) {
   let pointCounter = 0;
   for (let i = 0; i < matrix.length; i++) {
-    let rowMin = matrix[i][0];
-    let colIndex = 0;
-    let saddlePoint = true;
+    const info = {
+      minRowElem: matrix[i][0], // value of the minimal element in the row
+      colIndex: 0,              // column index for minimal element
+    };
     for (let j = 1; j < matrix.length; j++) {
-      if (matrix[i][j] < rowMin) {
-        rowMin = matrix[i][j];
-        colIndex = j;
+      if (matrix[i][j] < info.minRowElem) {
+        info.minRowElem = matrix[i][j];
+        info.colIndex = j;
       }
     }
+    let saddlePoint = true;
     for (let j = 0; j < matrix.length; j++) {
-      if (matrix[j][colIndex] > rowMin) {
+      if (matrix[j][info.colIndex] > info.minRowElem) {
         saddlePoint = false;
         break;
       }
     }
     if (saddlePoint) {
       pointCounter++;
-      console.log('Point: ' + matrix[i][colIndex]);
-      console.log('Column index: ' + colIndex);
+      console.log('Point: ' + matrix[i][info.colIndex]);
+      console.log('Column index: ' + info.colIndex);
       console.log('Row index: ' + i);
     }
   }
-  if (!pointCounter) {
+  if (!pointCounter)
     console.log('Matrix does not have saddle points.');
-  }
 }
 
-const size = 4;
-const minValue = 0;
-const maxValue = 10;
-const matrix = createMatrix(size, minValue, maxValue);
+const matrix = createMatrix();
 console.log(matrix);
 findSaddlePoint(matrix);
