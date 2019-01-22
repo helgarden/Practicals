@@ -1,23 +1,25 @@
+/*
+  Calculate (25th_root(a * b) + 5th_root(a)) using the formula
+  z[n+1] = (x / z^4[n] + 4 * z[n]) / 5
+  with random a, b and number of iterations
+*/
+
 'use strict';
 
-function checkInput(text) {
-  while (true) {
-    const input = prompt(text);
-    if (isFinite(input) && (input > 0)) return input;
-  }
-}
+const randomInt = (min, max) =>
+  Math.floor(min + Math.random() * (max - min + 1));
 
-function root5(x, iterNum) {
+const root5 = (x, iter) => {
   let z = x;
-  for (let count = 1; count < iterNum; count++) {
+  for (let i = 0; i < iter; i++) {
     z = (x / Math.pow(z, 4) + 4 * z) / 5;
   }
   return z;
-}
+};
 
-const num1 = checkInput('Enter the first number: ');
-const num2 = checkInput('Enter the second number: ');
-const iterNum = checkInput('Enter the number of iterations: ');
-const result = root5(root5(num1 * num2, iterNum)) + root5(num1, iterNum);
-
-console.log('Sum is ' + result);
+const a = randomInt(1, 100);
+const b = randomInt(1, 100);
+const iter = randomInt(100, 1000);
+console.log('a = ' + a);
+console.log('b = ' + b);
+console.log(root5(root5(a * b, iter), iter) + root5(a, iter));
