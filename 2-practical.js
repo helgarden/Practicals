@@ -4,7 +4,7 @@
 
 'use strict';
 
-const randomInt = (min, max) =>
+const randomInt = (min = 1, max = 10) =>
   Math.floor(min + Math.random() * (max - min + 1));
 
 const isTriangle = (triangle) => {
@@ -33,9 +33,9 @@ const getType = angle => {
 };
 
 const triangle = {
-  a: randomInt(1, 10),
-  b: randomInt(1, 10),
-  c: randomInt(1, 10),
+  a: randomInt(),
+  b: randomInt(),
+  c: randomInt(),
   ab: 0,
   bc: 0,
   ac: 0,
