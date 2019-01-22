@@ -1,3 +1,6 @@
+/* Display a list of C identifiers
+   that are on the right side of the assignment operator */
+
 'use strict';
 
 const reservedWords = [
@@ -61,10 +64,9 @@ const stringArray = [
   'a == m',
 ];
 
-function isCorrectIdentificator(word) {
-  if (reservedWords.includes(word))
-    return false;
-  if (word[0] >= '0' && word[0] <= '9')
+const validIdentificator = word => {
+  if (reservedWords.includes(word) ||
+      (word[0] >= '0' && word[0] <= '9'))
     return false;
   for (let i = 0; i < word.length; i++) {
     if ((word[i] < 'A' || word[i] > 'z') &&
@@ -73,17 +75,12 @@ function isCorrectIdentificator(word) {
       return false;
   }
   return true;
-}
+};
 
-function getIdentificators() {
-  stringArray.forEach((elem) => {
-    if (elem.includes('=')) {
-      const word = elem.substring(elem.indexOf('=') + 1, elem.indexOf(';')).trim();
-      if (isCorrectIdentificator(word)) {
-        console.log(word);
-      }
-    }
-  });
-}
-
-getIdentificators();
+stringArray.forEach((str) => {
+  if (str.includes('=')) {
+    const word = str.substring(str.indexOf('=') + 1, str.indexOf(';')).trim();
+    if (validIdentificator(word))
+      console.log(word);
+  }
+});
