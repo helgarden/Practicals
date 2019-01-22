@@ -1,20 +1,12 @@
 'use strict';
+/* Calculates the area of the figure,
+   which consists of five identical rectangles arranged as a plus.
+   Height of figure and width of one rectangle are random numbers. */
 
-function checkInput(text) {
-  while (true) {
-    const input = prompt(text);
-    if (isFinite(input) && (input > 0)) return input;
-  }
-}
+const randomInt = (min, max) =>
+  Math.floor(min + Math.random() * (max - min + 1));
 
-function calculateSquare(a, b) {
-  return (5 * (a / 3) * b);
-}
+const getArea = () =>
+  (5 * randomInt(0, 10) * randomInt(0, 10) / 3);
 
-function showResult(a, b) {
-  console.log('Площадь равна ' + calculateSquare(a, b));
-}
-
-const a = checkInput('Введите значение а:');
-const b = checkInput('Введите значение b:');
-showResult(a, b);
+console.log('Area is ' + getArea());
