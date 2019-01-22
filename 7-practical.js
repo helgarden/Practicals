@@ -1,57 +1,64 @@
+/*
+  Determine the number of array elements
+  belonging to the range of two random numbers and their sum.
+  Increase each such item by the amount received.
+*/
 'use strict';
 
-function randomInt(min, max) {
-  return Math.floor(min + Math.random() * (max - min + 1));
-}
+const randomInt = (min = 1, max = 100) =>
+  Math.floor(min + Math.random() * (max - min + 1));
 
-function checkArray(Array, size, minСheck, maxСheck) {
-  let sum, elementNumber = sum = 0;
-  for (let count = 0; count < size; count++) {
-    if ((Array[count] < maxСheck) && (Array[count] > minСheck)) {
-      elementNumber++;
-      sum += Array[count];
+// generate minimal and maximal numbers for comparison with array elements
+const generateValues = () => {
+  const values = {
+    min: randomInt(),
+    max: randomInt(),
+  };
+  if (values.min > values.max)
+    [values.min, values.max] = [values.max, values.min];
+  return values;
+};
+
+const fill = array => {
+  for (let i = 0; i < array.length; i++)
+    array[i] = randomInt(-100);
+};
+
+/* get information about sum and numbers of elements in array
+  between values.min and values.max */
+const getInfo = (array, values) => {
+  const info = {
+    sum: 0,
+    elemNum: 0,
+  };
+  array.forEach(elem => {
+    if ((elem > values.min) && (elem < values.max)) {
+      info.sum += elem;
+      info.elemNum++;
     }
-  }
-  showResults(Array, size, minСheck, maxСheck, elementNumber, sum);
-}
+  });
+  console.log(info);
+  return info;
+};
 
-function changeArray(Array, size, minCheck, maxCheck, sum) {
-  for (let count = 0; count < size; count++) {
-    if ((Array[count] < maxCheck) && (Array[count] > minCheck)) {
-      Array[count] += sum;
-    }
-  }
-}
-
-function showResults(Array, size, minСheck, maxСheck, elementNumber, sum) {
-  if (elementNumber) {
-    console.log('Количество элементов, подходящих условию: ' + elementNumber);
-    console.log('Сумма этих элементов: ' + sum);
-    changeArray(Array, size, minСheck, maxСheck, sum);
-    console.log('Новый массив:');
-    console.log(Array);
+//increase every elements between value.min and value.max on info.sum
+const change = (array, values) => {
+  const info = getInfo(array, values);
+  if (info.elemNum) {
+    array.forEach(elem => {
+      if ((elem > values.min) && (elem < values.max))
+        elem += info.sum;
+    });
   } else
-    console.log('Нет элементов из заданного диапазона.');
-}
+    console.log('No suitable elements for changing.');
+};
 
-function fillArray(Array, size, min, max) {
-  for (let count = 0; count < size; count++) {
-    Array[count] = randomInt(min, max);
-  }
-}
+const array = [];
+array.length = 15;
+fill(array);
+console.log('Array before changing:');
+console.log(array);
 
-const size = 10;
-const min = -25;
-const max = 25;
-
-let minCheck = randomInt(1, max);
-let maxCheck = randomInt(1, max);
-if (minCheck > maxCheck)
-  [minCheck, maxCheck] = [maxCheck, minCheck];
-
-const Array = [];
-fillArray(Array, size, min, max);
-console.log(Array);
-console.log('Минимальное значение для проверки: ' + minCheck);
-console.log('Максимальное значение для проверки: ' + maxCheck);
-checkArray(Array, size, minCheck, maxCheck);
+change(array, generateValues());
+console.log('Array after changing:');
+console.log(array);
