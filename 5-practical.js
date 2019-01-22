@@ -1,17 +1,17 @@
+/* Find all Armstrong numbers from 10 to 9999
+   e.g. 153 = 1^3 + 5^3 + 3^3
+        1634 = 1^4 + 6^4 + 3^4 + 4^4 */
+
 'use strict';
 
 let number = [];
-let result = '';
 
-for (let count = 10; count <= 9999; count++) {
-  number = String(count).split('');
+for (let num = 10; num < 10000; num++) {
+  number = String(num).split('');
   let sum = 0;
-  for (let count2 = 0; count2 < number.length; count2++) {
-    sum += Math.pow(number[count2], number.length);
+  for (let i = 0; i < number.length; i++) {
+    sum += Math.pow(number[i], number.length);
   }
-  if (sum === count) {
-    result += count + ' ';
-  }
+  if (sum === num)
+    console.log(sum);
 }
-
-console.log(result);
