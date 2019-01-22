@@ -1,7 +1,7 @@
 /*
   Determine the number of array elements
-  belonging to the range of two random numbers and their sum.
-  Increase each such item by the amount received.
+  belonging to the range of two random natural numbers and their sum.
+  Create new array with increased each such item by the amount received.
 */
 'use strict';
 
@@ -16,6 +16,7 @@ const generateValues = () => {
   };
   if (values.min > values.max)
     [values.min, values.max] = [values.max, values.min];
+  console.log(values);
   return values;
 };
 
@@ -24,8 +25,7 @@ const fill = array => {
     array[i] = randomInt(-100);
 };
 
-/* get information about sum and numbers of elements in array
-  between values.min and values.max */
+// get info about sum and numbers of elements in array between min and max
 const getInfo = (array, values) => {
   const info = {
     sum: 0,
@@ -41,14 +41,16 @@ const getInfo = (array, values) => {
   return info;
 };
 
-//increase every elements between value.min and value.max on info.sum
+// create new array with increased elements
 const change = (array, values) => {
   const info = getInfo(array, values);
   if (info.elemNum) {
-    array.forEach(elem => {
+    const newArray = array.map(elem => {
       if ((elem > values.min) && (elem < values.max))
-        elem += info.sum;
+        return elem + info.sum;
+      return elem;
     });
+    return newArray;
   } else
     console.log('No suitable elements for changing.');
 };
@@ -59,6 +61,5 @@ fill(array);
 console.log('Array before changing:');
 console.log(array);
 
-change(array, generateValues());
 console.log('Array after changing:');
-console.log(array);
+console.log(change(array, generateValues()));
