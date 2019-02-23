@@ -1,7 +1,18 @@
-# Practicals for university
-Kyiv Polytechnic Institute, FICT, 2018, first grade.
-Course "Programming fundamentals"
+# Practicals
 
+University: Kyiv Polytechnic Institute.
+
+Faculty: FICT.
+
+Year: 2018.
+
+Grade: 1. 
+
+Semester: 1.
+
+Course: Programming Fundamentals, part 1.
+
+Themes:
 1. arithmetic expressions
 2. if
 3. for
